@@ -125,5 +125,9 @@ rule onlyOwnersMayChangeTotalSupply(method f) {
     calldataarg args;
     f(e,args);
     uint256 totalSupplyAfter = totalSupply();
-    assert e.msg.sender == _owner() => totalSupplyAfter != totalSupplyBefore;
+
+    assert (
+        totalSupplyAfter != totalSupplyBefore => (e.msg.sender == _owner()),
+        "total supply can only changed by the owner"
+    );
 }
