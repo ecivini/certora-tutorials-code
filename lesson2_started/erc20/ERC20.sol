@@ -234,10 +234,7 @@ contract ERC20 is IERC20, IERC20Metadata {
         returns (bool)
     {
         uint256 currentAllowance = _allowances[msg.sender][spender];
-        
-        unchecked {
-            _approve(msg.sender, spender, currentAllowance - subtractedValue);
-        }
+        _approve(msg.sender, spender, currentAllowance - subtractedValue);
 
         return true;
     }
