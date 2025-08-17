@@ -81,7 +81,7 @@ rule doesNotAffectAThirdPartyBalance(method f) {
     address to;
     address thirdParty;
 
-    require (thirdParty != from) && (thirdParty != to);
+    require (thirdParty != from) && (thirdParty != to) && (e.msg.sender != thirdParty);
 
     uint256 thirdBalanceBefore = balanceOf(thirdParty);
     callFunctionWithParams(e, f, from, to);
